@@ -1,11 +1,12 @@
 # Core
 pytz==2019.3
-Django==3.0.3
+Django==3.0.7
 django-configurations==2.2
 gunicorn==20.0.4
 newrelic==5.4.1.134
 python-decouple==3.3
 django-crontab==0.7.1
+numpy==1.19.1
 
 # For the persistence stores
 psycopg2-binary==2.8.4
@@ -24,6 +25,7 @@ Markdown==3.1.1
 django-filter==2.2.0
 djangorestframework==3.11.0
 djangorestframework-gis==0.15
+djangorestframework-mvt==0.2.4
 drf-yasg==1.17.1
 
 # Developer Tools
@@ -42,3 +44,9 @@ coverage==5.0.3
 # Static and Media Storage
 django-storages==1.8.0
 boto3==1.11.1
+
+# CORS
+django-cors-headers==3.2.1
+
+# Development
+django-sslserver==0.22

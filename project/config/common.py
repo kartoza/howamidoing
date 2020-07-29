@@ -2,7 +2,7 @@ import os
 from os.path import join
 import dj_database_url
 from configurations import Configuration
-from decouple import config
+from decouple import config, Csv
 
 
 class Common(Configuration):
@@ -25,14 +25,17 @@ class Common(Configuration):
         'drf_yasg',                  # swagger UI for rest framework
         'leaflet',                   # Djanfo Leaflet to show map
         'django_crontab',            # package for cron job
+        'corsheaders',               # for CORS settings
+        'sslserver',
 
-        # Your apps
+        # Howamidoing apps
         'project.users',
         'project.report'
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
     MIDDLEWARE = (
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -42,7 +45,7 @@ class Common(Configuration):
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
 
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,0.0.0.0,127.0.0.01', cast=Csv())
     ROOT_URLCONF = 'project.urls'
     SECRET_KEY = config('DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'project.wsgi.application'
