@@ -1,8 +1,9 @@
 __author__ = 'zakki@kartoza.com'
 
 from django.core.management.base import BaseCommand
-from django.contrib.gis.geos import GEOSGeometry, Polygon
+from django.contrib.gis.geos import Polygon
 from project.report.models.km_grid import KmGrid
+
 import os
 import json
 
@@ -33,7 +34,8 @@ class Command(BaseCommand):
             if options['file']:
                 file_loc = os.path.abspath(options['file'])
                 import_grid_from_geojson(file_loc)
-
+            else:
+                print('Please specify file location!')
         except Exception as e:
             print(e)
 

@@ -1,8 +1,7 @@
 from django.contrib.gis.geos import fromstr
 from django.contrib.gis.db import models as gis
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from ..utils.scoring_grid import color_score_km_grid, status_score_km_grid
+from project.report.utils.scoring_grid import color_score_km_grid, status_score_km_grid
 from django.core.exceptions import FieldError
 from django.contrib.gis.db import models
 from rest_framework.serializers import ValidationError
@@ -176,13 +175,12 @@ class KmGridScoreMVTManager(MVTManager):
             f"ST_Intersects({table}.{self.geo_col}, "
             f"ST_GeomFromText(%s)){extra_wheres}"
         )
-        # print(where_clause, list(params))
         return where_clause, list(params)
 
 
 class KmGridScore(models.Model):
     """
-    Materialized uiews for user status summary per grid
+    Model for user status summary per grid
     """
     geometry = gis.PolygonField(
         help_text=_('Geometry of this Grid'),

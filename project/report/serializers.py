@@ -1,9 +1,7 @@
 from rest_framework import serializers
-from rest_framework_gis.serializers import GeoFeatureModelSerializer, GeometryField
+from rest_framework_gis.serializers import GeometryField
 from .models.status import Status
 from .models.report import Report
-from .models.km_grid import KmGrid
-from .models.km_grid_score import KmGridScore
 from .models.user import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -60,37 +58,3 @@ class ReportRetrieveListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Report
         fields = '__all__'
-
-
-class KmGridSerializer(GeoFeatureModelSerializer):
-    """
-    Serializer for KmGrid object.
-    """
-
-    class Meta:
-        model = KmGrid
-        geo_field = 'geometry'
-        fields = '__all__'
-
-
-class KmGridScoreSerializer(GeoFeatureModelSerializer):
-    """
-    Serializer for KmGridScore object.
-    """
-
-    def to_representation(self, instance):
-        feature = dict()
-        feature["type"] = "Feature"
-        field = self.fields[self.Meta.geo_field]
-        feature["geometry"] = field.to_representation(instance.centroid)
-        feature["properties"] = {
-            "total_score": instance.total_score,
-            "total_report": instance.total_report
-        }
-
-        return feature
-
-    class Meta:
-        model = KmGridScore
-        geo_field = 'geometry'
-        fields = ('total_score', 'total_report')
