@@ -20,10 +20,10 @@ django_unique_upload==0.2.1
 django-leaflet==0.26.0
 
 # Rest apis
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 Markdown==3.1.1
 django-filter==2.2.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-gis==0.15
 djangorestframework-mvt==0.2.4
 drf-yasg==1.17.1
