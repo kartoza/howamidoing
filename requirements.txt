@@ -30,7 +30,7 @@ drf-yasg==1.17.1
 
 # Developer Tools
 ipdb==0.12.3
-ipython==7.11.1
+ipython==7.16.3
 mkdocs==1.0.4
 flake8==3.7.9
 
